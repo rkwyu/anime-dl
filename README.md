@@ -1,4 +1,4 @@
-# anime-dl
+# anime-dl 動畫下載
 
 ## About ##
 A tool to get anime from different websites with CLI (Command Line Interface).  
