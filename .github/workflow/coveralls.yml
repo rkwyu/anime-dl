@@ -1,0 +1,27 @@
+
+name: Test Coveralls Parallel
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repo
+      uses: actions/checkout@v4
+
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install Dependencies
+      run: pip install -r requirements.txt
+
+    - name: Pytest
+      run: python -m pytest --cov=./anime_dl --cov-report term-missing --cov-report xml
+
+    - name: Coveralls
+      uses: coverallsapp/github-action@v2.2.3
