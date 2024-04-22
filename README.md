@@ -1,4 +1,5 @@
 # anime-dl 動畫下載
+[![Coverage Status](https://coveralls.io/repos/github/rkwyu/anime-dl/badge.svg?branch=main)](https://coveralls.io/github/rkwyu/anime-dl?branch=main)
 
 ## About ##
 A tool to get anime from different websites with CLI (Command Line Interface).  
