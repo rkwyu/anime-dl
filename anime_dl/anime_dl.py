@@ -46,9 +46,5 @@ def main(url: str) -> None:
     ffmpeg_strategy = FfmpegStrategy()
     downloader = Downloader(ffmpeg_strategy)
     for episode in episodes:
-        try:
-            video_url_validator.validate(episode)
-            downloader.download(episode)
-        except Exception as e:
-            logger.error(e)
-            logger.error(traceback.format_exc())
+        video_url_validator.validate(episode)
+        downloader.download(episode)

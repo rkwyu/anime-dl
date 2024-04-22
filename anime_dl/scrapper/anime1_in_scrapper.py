@@ -47,7 +47,7 @@ class Anime1InScrapper(Scrapper):
             logger.error(f"{url}: {e}")
             return []
 
-    def get_info(self, url: str) -> str:
+    def get_info(self, url: str) -> typing.List[Episode]:
         try:
             episodes = []
             headers = general.REQUEST["header"]
