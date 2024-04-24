@@ -53,5 +53,6 @@ def main(url: str) -> None:
         for episode in episodes:
             video_url_validator.validate(episode)
             downloader.download(episode)
-    except:
+    except Exception as e:
         logger.error(traceback.format_exc())
+        raise e
