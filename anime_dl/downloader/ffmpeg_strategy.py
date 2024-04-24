@@ -25,11 +25,12 @@ class FfmpegStrategy(Strategy):
             )
             os.makedirs(os.path.dirname(output), exist_ok=True)
             if os.path.exists(output) is False:
+                logger.info(f"started download: {filename}")
                 stream = ffmpeg.input(url)
                 stream = ffmpeg.output(stream, output, vcodec="copy", acodec="copy")
                 ffmpeg.run(stream)
-                logger.info(f"downloaded {filename}")
+                logger.info(f"downloaded: {filename}")
             else:
-                logger.warn(f"file existed: {filename}")
+                logger.warning(f"file existed: {filename}")
         except:
             logger.error(traceback.format_exc())
