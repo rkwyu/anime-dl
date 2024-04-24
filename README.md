@@ -32,12 +32,11 @@ python -m pip install -r requirements.txt
 ```
 
 ## ▶️ Usage (CLI) ##
-Before running the application, required packages need to be installed by following command:
 ```console
 python run.py {URL}
 ```
 
-#### Example ####
+#### ▶️ Example ####
 《Chainsaw Man Season 1》,  
 - Series ([https://www.xgcartoon.com/detail/dianjurenriyu-tengbenshu](https://www.xgcartoon.com/detail/dianjurenriyu-tengbenshu))  
 - Episode 1 ([https://www.xgcartoon.com/user/page_direct?cartoon_id=dianjurenriyu-tengbenshu&chapter_id=vRsDVLPPou](https://www.xgcartoon.com/user/page_direct?cartoon_id=dianjurenriyu-tengbenshu&chapter_id=vRsDVLPPou))  
@@ -53,9 +52,14 @@ python run.py https://www.xgcartoon.com/user/page_direct?cartoon_id=dianjurenriy
 ```
 
 ## ▶️ Usage (WebUI) ##
-Before running the application, required packages need to be installed by following command:
 ```console
 python webUI.py
+```
+After the logs are shown as below, go to [http://127.0.0.1:7860](http://127.0.0.1:7860)
+```console
+Running on local URL:  http://127.0.0.1:7860
+
+To create a public link, set `share=True` in `launch()`.
 ```
 ![anime-al screenshot](docs/screenshot.png?raw=true "anime-al")
 
