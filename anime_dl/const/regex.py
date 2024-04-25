@@ -26,4 +26,9 @@ URL = {
         "series": "^https?:\/\/yhdm\.one\/vod\/[0-9]+.html$",
         "episode": "^https?:\/\/yhdm\.one\/vod-play\/([0-9]+)\/([a-zA-Z0-9]+).html$",
     },
+    "agdm.tv": {
+        "domain": "^https?:\/\/agdm\.tv\/.+$",
+        "series": "^https?:\/\/agdm\.tv\/vod\/([0-9]+).html$",
+        "episode": "^https?:\/\/agdm\.tv\/play\/([0-9]+)-([0-9]+)-([0-9]+).html$",
+    },
 }

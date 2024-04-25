@@ -53,11 +53,11 @@ class YhdmOneScrapper(Scrapper):
             series_name = doc.select_one("h1.names").text.strip()
             image_src = doc.select_one("div.detail-poster img").attrs["src"].strip()
             episode_no = 1
-            chapters = doc.select("div.ep-panel a")
+            items = doc.select("div.ep-panel a")
             progress_bar = ProgressBar("Link Fetching", 1, len(episodes))
-            for chapter in reversed(chapters):
-                episode_name = chapter.text.strip()
-                referer_url = "https://yhdm.one" + chapter.attrs["href"].strip()
+            for item in reversed(items):
+                episode_name = item.text.strip()
+                referer_url = "https://yhdm.one" + item.attrs["href"].strip()
                 episodes.append(
                     Episode()
                     .set_series_name(series_name)

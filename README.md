@@ -10,6 +10,7 @@ It currently supports following websites:
 - [x] [yhdm.one](https://yhdm.one/)  
 - [x] [xgcartoon.com](https://www.xgcartoon.com/)
 - [x] [lincartoon.com](https://www.lincartoon.com/)
+- [x] [agdm.tv](https://www.agdm.tv/)
 
 Pending to supports:  
 - [ ] [kickassanime.mx](https://www1.kickassanime.mx/)

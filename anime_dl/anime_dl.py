@@ -3,6 +3,7 @@ from urllib.parse import unquote
 from anime_dl.const import regex
 from anime_dl.downloader.downloader import Downloader
 from anime_dl.downloader.ffmpeg_strategy import FfmpegStrategy
+from anime_dl.scrapper.agdm_tv_creator import AgdmTvCreator
 from anime_dl.scrapper.anime1_in_creator import Anime1InCreator
 from anime_dl.scrapper.anime1_me_creator import Anime1MeCreator
 from anime_dl.scrapper.xgcartoon_creator import XgCartoonCreator
@@ -32,6 +33,8 @@ def main(url: str) -> None:
             scrapper = Anime1InCreator()
         elif re.search(regex.URL["yhdm.one"]["domain"], url):
             scrapper = YhdmOneCreator()
+        elif re.search(regex.URL["agdm.tv"]["domain"], url):
+            scrapper = AgdmTvCreator()
         else:
             raise Exception(f"Unsupported URL: {url}")
 
