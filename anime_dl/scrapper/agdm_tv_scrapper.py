@@ -23,7 +23,7 @@ class AgdmTvScrapper(Scrapper):
             for episode in episodes:
                 e, x_servers = self.parse_episode(episode.referer_url)
                 # check if video source available
-                if requests.get(e.video_url, headers=general.REQUEST["header"]).ok:
+                if self.test_connectivity(e.video_url):
                     episode = (
                         episode.set_series_name(e.series_name)
                         .set_season(e.season)
@@ -44,9 +44,7 @@ class AgdmTvScrapper(Scrapper):
                         )
                         logger.info(f"try another server: {x_url}")
                         e, _ = self.parse_episode(x_url)
-                        if requests.get(
-                            e.video_url, headers=general.REQUEST["header"]
-                        ).ok:
+                        if self.test_connectivity(e.video_url):
                             episode = (
                                 episode.set_series_name(e.series_name)
                                 .set_season(e.season)
@@ -65,7 +63,7 @@ class AgdmTvScrapper(Scrapper):
             episode_no = m.groups()[2]
             episode, x_servers = self.parse_episode(url)
             # check if video source available
-            if requests.get(episode.video_url, headers=general.REQUEST["header"]).ok:
+            if self.test_connectivity(episode.video_url):
                 return [episode]
             # try other servers
             else:
@@ -74,9 +72,7 @@ class AgdmTvScrapper(Scrapper):
                     x_url = f"https://agdm.tv/play/{id}-{x_server}-{episode_no}.html"
                     logger.info(f"try another server: {x_url}")
                     episode, _ = self.parse_episode(x_url)
-                    if requests.get(
-                        episode.video_url, headers=general.REQUEST["header"]
-                    ).ok:
+                    if self.test_connectivity(episode.video_url):
                         return [episode]
                     else:
                         logger.warning(f"video source fail: {x_url} ({episode.video_url})")
@@ -151,3 +147,7 @@ class AgdmTvScrapper(Scrapper):
         except Exception as e:
             logger.error(f"{url}: {e}")
             return Episode()
+
+    def test_connectivity(url):
+        headers = general.REQUEST["header"]
+        return requests.get(url, headers=headers).ok
