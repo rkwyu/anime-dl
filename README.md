@@ -16,7 +16,7 @@ Pending to supports:
 - [ ] [iyinghua.io](http://www.iyinghua.io/)
 
 ## Prerequisites ##
-To running this tool, please make sure the following prerequisites are ready:
+Please make sure the following tool(s) / application(s) are properly setup and ready to use:
 - FFmpeg ([https://www.ffmpeg.org/](https://www.ffmpeg.org/))
 
 ## Setup ##
@@ -30,22 +30,23 @@ cd ./anime-dl
 python -m pip install -r requirements.txt
 ```
 
+## Configuration ##
+Output directory can be configured in `config.ini`
+```ini
+[DIRECTORY]
+output=./output
+```
+
 ## Usage (CLI) ##
 ```console
 python run.py {URL}
 ```
 
-#### Example ####
-《Chainsaw Man Season 1》,  
-- Series ([https://www.xgcartoon.com/detail/dianjurenriyu-tengbenshu](https://www.xgcartoon.com/detail/dianjurenriyu-tengbenshu))  
-- Episode 1 ([https://www.xgcartoon.com/user/page_direct?cartoon_id=dianjurenriyu-tengbenshu&chapter_id=vRsDVLPPou](https://www.xgcartoon.com/user/page_direct?cartoon_id=dianjurenriyu-tengbenshu&chapter_id=vRsDVLPPou))  
-
-Download all episodes:  
+#### Example 1: Download all episodes of 《Chainsaw Man Season 1》 ####
 ```console
 python run.py https://www.xgcartoon.com/detail/dianjurenriyu-tengbenshu
 ```
-
-Download episode 1:  
+#### Example 1: Download episode 01 of 《Chainsaw Man Season 1》 ####
 ```console
 python run.py https://www.xgcartoon.com/user/page_direct?cartoon_id=dianjurenriyu-tengbenshu&chapter_id=vRsDVLPPou
 ```
