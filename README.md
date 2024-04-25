@@ -3,7 +3,7 @@
 [![License: GPLv3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 ## About ##
-A tool to get anime from different websites with CLI (Command Line Interface) and webui.  
+A tool to get anime from different websites with [CLI (Command Line Interface)](#usage-cli) and [WebUI](#usage-webui).  
 It currently supports following websites:  
 - [x] [anime1.in](https://anime1.in/)  
 - [x] [anime1.me](https://anime1.me/)  
