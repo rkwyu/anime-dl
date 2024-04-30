@@ -1,6 +1,8 @@
-# Anime-dl 動畫下載 [![python](https://img.shields.io/badge/Python-3.11-3776AB.svg?style=flat&logo=python&logoColor=white)](https://www.python.org) ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/rkwyu/anime-dl/main) [![Coverage Status](https://coveralls.io/repos/github/rkwyu/anime-dl/badge.svg?branch=main)](https://coveralls.io/github/rkwyu/anime-dl?branch=main)
+# Anime-dl 動畫下載 [![python](https://img.shields.io/badge/Python-3.11-3776AB.svg?style=flat&logo=python&logoColor=white)](https://www.python.org) ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/rkwyu/anime-dl/main) [![Coverage Status](https://coveralls.io/repos/github/rkwyu/anime-dl/badge.svg?branch=main)](https://coveralls.io/github/rkwyu/anime-dl?branch=main)  
 
-[![License: GPLv3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+<a href="https://buymeacoffee.com/r1y5i" target="_blank">
+<img style="border-radius: 20px" src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174">
+</a>
 
 ## About ##
 A tool to get anime from different websites with [CLI (Command Line Interface)](#usage-cli) and [WebUI](#usage-webui).  
@@ -49,7 +51,7 @@ python run.py https://www.xgcartoon.com/detail/dianjurenriyu-tengbenshu
 ```
 #### Example 1: Download episode 01 of 《Chainsaw Man Season 1》 ####
 ```console
-python run.py https://www.xgcartoon.com/user/page_direct?cartoon_id=dianjurenriyu-tengbenshu&chapter_id=vRsDVLPPou
+python run.py https://www.xgcartoon.com/video/dianjurenriyu-tengbenshu/vRsDVLPPou.html
 ```
 
 ## Usage (WebUI) ##
@@ -66,4 +68,5 @@ To create a public link, set `share=True` in `launch()`.
 
 
 ## License ##
-[GNU GPL v3.0](LICENSE.md)
+This project is licensed under the [MIT License](LICENSE.md)
+
