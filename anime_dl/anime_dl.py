@@ -24,7 +24,9 @@ def main(url: str) -> None:
 
         if re.search(regex.URL["lincartoon"]["domain"], url):
             url = url.replace("lincartoon.com", "xgcartoon.com")
-
+        if re.search(regex.URL["dailygh"]["domain"], url):
+            url = url.replace("dailygh.com", "xgcartoon.com")
+        
         if re.search(regex.URL["xgcartoon"]["domain"], url):
             scrapper = XgCartoonCreator()
         elif re.search(regex.URL["anime1.me"]["domain"], url):
