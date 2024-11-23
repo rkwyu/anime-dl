@@ -8,6 +8,7 @@ from anime_dl.scrapper.anime1_in_creator import Anime1InCreator
 from anime_dl.scrapper.anime1_me_creator import Anime1MeCreator
 from anime_dl.scrapper.xgcartoon_creator import XgCartoonCreator
 from anime_dl.scrapper.yhdm_one_creator import YhdmOneCreator
+from anime_dl.utils.config_loader import ConfigLoader
 from anime_dl.utils.logger import Logger
 from anime_dl.validator.episode_name_validator import EpisodeNameValidator
 from anime_dl.validator.season_validator import SeasonValidator
@@ -17,6 +18,7 @@ import re
 import os
 import ffmpeg
 
+config_loader = ConfigLoader()
 logger = Logger()
 
 
@@ -58,12 +60,13 @@ def main(url: str) -> None:
         ffmpeg_strategy = FfmpegStrategy()
         downloader = Downloader(ffmpeg_strategy)
         for episode in episodes:
-            fn = episode.series_name+"."+episode.season+"."+episode.episode_name+".mp4"
+            fn = f"{episode.series_name}.{episode.season}.{episode.episode_name}.mp4"
+            fp = os.path.join(config_loader.get(section="DIRECTORY", key="output"),fn)
             try:
-                ffmpeg.input(os.path.join("output",fn)).output('x.png', vframes=0, loglevel="quiet").run()
+                ffmpeg.input(fp).output('x.png', vframes=0, loglevel="quiet").run()
             except ffmpeg._run.Error:
                 try:
-                    os.remove(os.path.join("output",fn))
+                    os.remove(fp)
                 except:
                     pass
                 video_url_validator.validate(episode)
