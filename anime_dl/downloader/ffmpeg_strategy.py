@@ -24,13 +24,10 @@ class FfmpegStrategy(Strategy):
                 sanitize_filename(filename),
             )
             os.makedirs(os.path.dirname(output), exist_ok=True)
-            if os.path.exists(output) is False:
-                logger.info(f"started download: {filename} ({url})")
-                stream = ffmpeg.input(url)
-                stream = ffmpeg.output(stream, output, vcodec="copy", acodec="copy")
-                ffmpeg.run(stream)
-                logger.info(f"downloaded: {filename}")
-            else:
-                logger.warning(f"file existed: {filename}")
+            logger.info(f"started download: {filename} ({url})")
+            stream = ffmpeg.input(url)
+            stream = ffmpeg.output(stream, output, vcodec="copy", acodec="copy")
+            ffmpeg.run(stream)
+            logger.info(f"downloaded: {filename}")
         except:
             logger.error(traceback.format_exc())
