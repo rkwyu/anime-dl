@@ -19,15 +19,21 @@ class FfmpegStrategy(Strategy):
             filename = (
                 f"{episode.series_name}.{episode.season}.{episode.episode_name}.mp4"
             )
+            fnt = f"{episode.series_name}.{episode.season}.{episode.episode_name}_temp.mp4"
             output = os.path.join(
                 config_loader.get(section="DIRECTORY", key="output"),
                 sanitize_filename(filename),
             )
+            output_t = os.path.join(
+                config_loader.get(section="DIRECTORY", key="output"),
+                sanitize_filename(fnt),
+            )
             os.makedirs(os.path.dirname(output), exist_ok=True)
             logger.info(f"started download: {filename} ({url})")
             stream = ffmpeg.input(url)
-            stream = ffmpeg.output(stream, output, vcodec="copy", acodec="copy")
+            stream = ffmpeg.output(stream, output_t, vcodec="copy", acodec="copy")
             ffmpeg.run(stream)
+            os.rename(output_t,output)
             logger.info(f"downloaded: {filename}")
         except:
             logger.error(traceback.format_exc())
