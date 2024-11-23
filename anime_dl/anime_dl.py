@@ -62,7 +62,10 @@ def main(url: str) -> None:
             try:
                 ffmpeg.input(os.path.join("output",fn)).output('x.png', vframes=0, loglevel="quiet").run()
             except ffmpeg._run.Error:
-                os.remove(os.path.join("output",fn))
+                try:
+                    os.remove(os.path.join("output",fn))
+                except:
+                    pass
                 video_url_validator.validate(episode)
                 downloader.download(episode)
             else:
