@@ -15,6 +15,7 @@ from anime_dl.validator.series_name_validator import SeriesNameValidator
 from anime_dl.validator.video_url_validator import VideoUrlValidator
 import re
 import os
+import ffmpeg
 
 logger = Logger()
 
@@ -58,11 +59,14 @@ def main(url: str) -> None:
         downloader = Downloader(ffmpeg_strategy)
         for episode in episodes:
             fn = episode.series_name+"."+episode.season+"."+episode.episode_name+".mp4"
-            if fn in os.listdir("output"):
-                print("Skip "+fn+" (downloaded)")
-            else:
+            try:
+                ffmpeg.input(os.path.join("output",fn)).output('x.png', vframes=0, loglevel="quiet").run()
+            except ffmpeg._run.Error:
+                os.remove(os.path.join("output",fn))
                 video_url_validator.validate(episode)
                 downloader.download(episode)
+            else:
+                print("Skip "+fn+" (downloaded)")
     except Exception as e:
         logger.error(traceback.format_exc())
         raise e
