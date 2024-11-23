@@ -61,12 +61,18 @@ def main(url: str) -> None:
         downloader = Downloader(ffmpeg_strategy)
         for episode in episodes:
             fn = f"{episode.series_name}.{episode.season}.{episode.episode_name}.mp4"
+            fnt = f"{episode.series_name}.{episode.season}.{episode.episode_name}_temp.mp4"
             fp = os.path.join(config_loader.get(section="DIRECTORY", key="output"),fn)
+            fpt = os.path.join(config_loader.get(section="DIRECTORY", key="output"),fnt)
             try:
                 ffmpeg.input(fp).output('x.png', vframes=0, loglevel="quiet").run()
             except ffmpeg._run.Error:
                 try:
                     os.remove(fp)
+                except:
+                    pass
+                try:
+                    os.remove(fpt)
                 except:
                     pass
                 video_url_validator.validate(episode)
