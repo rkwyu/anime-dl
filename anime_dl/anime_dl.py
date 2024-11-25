@@ -57,9 +57,20 @@ def main(url: str) -> None:
         ).set_next(episode_name_validator)
 
         # downloader
+        seasons = []
+        for episode in episodes:
+            if not episode.season in seasons:
+                seasons.append(episode.season)
+        for i in range(len(seasons)):
+            print("("+str(i+1)+") "+seasons[i])
+        saves = input("Choose the seasons to download(ex: 1,2,3): ").split(",")
+        for i in range(len(saves)):
+            saves[i] = seasons[int(saves[i])-1]
         ffmpeg_strategy = FfmpegStrategy()
         downloader = Downloader(ffmpeg_strategy)
         for episode in episodes:
+            if not episode.season in saves:
+                continue
             fn = f"{episode.series_name}.{episode.season}.{episode.episode_name}.mp4"
             fnt = f"{episode.series_name}.{episode.season}.{episode.episode_name}_temp.mp4"
             fp = os.path.join(config_loader.get(section="DIRECTORY", key="output"),fn)
