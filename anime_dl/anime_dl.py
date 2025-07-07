@@ -64,11 +64,13 @@ def main(url: str) -> None:
         for i in range(len(seasons)):
             print("("+str(i+1)+") "+seasons[i])
         saves = input("Choose the seasons to download(ex: 1,2,3): ").split(",")
+        starts = int(input("Start ep: "))
+        ends = int(input("End ep: "))
         for i in range(len(saves)):
             saves[i] = seasons[int(saves[i])-1]
         ffmpeg_strategy = FfmpegStrategy()
         downloader = Downloader(ffmpeg_strategy)
-        for episode in episodes:
+        for episode in episodes[starts-1:ends]:
             if not episode.season in saves:
                 continue
             fn = f"{episode.series_name}.{episode.season}.{episode.episode_name}.mp4"
