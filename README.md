@@ -1,8 +1,11 @@
 # Anime-dl 動畫下載 [![python](https://img.shields.io/badge/Python-3.11-3776AB.svg?style=flat&logo=python&logoColor=white)](https://www.python.org) ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/rkwyu/anime-dl/main) [![Coverage Status](https://coveralls.io/repos/github/rkwyu/anime-dl/badge.svg?branch=main)](https://coveralls.io/github/rkwyu/anime-dl?branch=main)  
 
-<a href="https://buymeacoffee.com/r1y5i" target="_blank">
+<a href="https://buymeacoffee.com/abe0" target="_blank">
 <img style="border-radius: 20px" src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174">
 </a>
+
+## Difference ##
+This fork allowed you to choose specific seasons and episodes to download. What's more is that it support cc subtitles from xgcartoon.
 
 ## About ##
 A tool to get anime from different websites with [CLI (Command Line Interface)](#usage-cli) and [WebUI](#usage-webui).  
