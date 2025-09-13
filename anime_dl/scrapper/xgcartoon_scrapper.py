@@ -2,16 +2,19 @@ import logging
 import re
 import requests
 import typing
+import os
 
 from anime_dl.const import regex, general
 from anime_dl.object.episode import Episode
 from anime_dl.scrapper.scrapper import Scrapper
+from anime_dl.utils.config_loader import ConfigLoader
 from anime_dl.utils.logger import Logger
 from anime_dl.utils.progress_bar import ProgressBar
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse, parse_qs
 
 logger = Logger()
+config_loader = ConfigLoader()
 
 
 class XgCartoonScrapper(Scrapper):
@@ -95,6 +98,17 @@ class XgCartoonScrapper(Scrapper):
             if "vid" in parse_qs(urlparse(iframe_src).query):
                 vid = parse_qs(urlparse(iframe_src).query)["vid"][0]
                 video_url = f"https://xgct-video.vzcdn.net/{vid}/playlist.m3u8"
+                vtt_url = f"https://xgct-video.vzcdn.net/{vid}/captions/TW.vtt"
+                response = requests.get(vtt_url)
+                if response.status_code==200:
+                    path = os.path.join(
+                        config_loader.get(section="DIRECTORY", key="output"),
+                        "vtt",
+                        episode_name+".vtt",
+                    )
+                    os.makedirs(os.path.dirname(path), exist_ok=True)
+                    with open(path,"wb") as f:
+                        f.write(response.content)
             else:
                 video_url = self.parse_iframe(iframe_src)
             return (

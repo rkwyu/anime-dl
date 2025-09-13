@@ -19,18 +19,36 @@ class FfmpegStrategy(Strategy):
             filename = (
                 f"{episode.series_name}.{episode.season}.{episode.episode_name}.mp4"
             )
+            fnt = f"{episode.series_name}.{episode.season}.{episode.episode_name}_temp.mp4"
             output = os.path.join(
                 config_loader.get(section="DIRECTORY", key="output"),
                 sanitize_filename(filename),
             )
+            output_t = os.path.join(
+                config_loader.get(section="DIRECTORY", key="output"),
+                sanitize_filename(fnt),
+            )
+            vtt = os.path.join(
+                config_loader.get(section="DIRECTORY", key="output"),
+                "vtt",
+                f"{episode.episode_name}.vtt",
+            )
             os.makedirs(os.path.dirname(output), exist_ok=True)
-            if os.path.exists(output) is False:
-                logger.info(f"started download: {filename} ({url})")
-                stream = ffmpeg.input(url)
-                stream = ffmpeg.output(stream, output, vcodec="copy", acodec="copy")
-                ffmpeg.run(stream)
-                logger.info(f"downloaded: {filename}")
+            logger.info(f"started download: {filename} ({url})")
+            stream = ffmpeg.input(url)
+            stream = ffmpeg.output(stream, output_t, vcodec="copy", acodec="copy")
+            ffmpeg.run(stream)
+            if os.path.exists(vtt):
+                ffmpeg.output(
+                    ffmpeg.input(output_t),
+                    ffmpeg.input(vtt),
+                    output,
+                    **{'c': 'copy', 'c:s': 'mov_text'},
+                ).run()
+                os.remove(vtt)
+                os.remove(output_t)
             else:
-                logger.warning(f"file existed: {filename}")
+                os.rename(output_t,output)
+            logger.info(f"downloaded: {filename}")
         except:
             logger.error(traceback.format_exc())
