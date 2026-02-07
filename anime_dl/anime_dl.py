@@ -17,25 +17,30 @@ import re
 
 logger = Logger()
 
+# Map friendly names to creator classes
+EXTRACTORS = {
+    "xgcartoon.com": XgCartoonCreator,
+    "lincartoon.com": XgCartoonCreator,
+    "anime1.me": Anime1MeCreator,
+    "anime1.in": Anime1InCreator,
+    "yhdm.one": YhdmOneCreator,
+    "agdm.tv": AgdmTvCreator,
+}
 
 def main(url: str) -> None:
     try:
         url = unquote(url)
 
-        if re.search(regex.URL["lincartoon"]["domain"], url):
+        if re.search(regex.URL["lincartoon.com"]["domain"], url):
             url = url.replace("lincartoon.com", "xgcartoon.com")
 
-        if re.search(regex.URL["xgcartoon"]["domain"], url):
-            scrapper = XgCartoonCreator()
-        elif re.search(regex.URL["anime1.me"]["domain"], url):
-            scrapper = Anime1MeCreator()
-        elif re.search(regex.URL["anime1.in"]["domain"], url):
-            scrapper = Anime1InCreator()
-        elif re.search(regex.URL["yhdm.one"]["domain"], url):
-            scrapper = YhdmOneCreator()
-        elif re.search(regex.URL["agdm.tv"]["domain"], url):
-            scrapper = AgdmTvCreator()
-        else:
+        scrapper = None
+        for name, creator_class in EXTRACTORS.items():
+            if re.search(regex.URL[name.lower()]["domain"], url):
+                scrapper = creator_class()
+                break
+            
+        if scrapper is None:
             raise Exception(f"Unsupported URL: {url}")
 
         # scrapping
@@ -59,3 +64,6 @@ def main(url: str) -> None:
     except Exception as e:
         logger.error(traceback.format_exc())
         raise e
+    
+def list_extractors() -> list[str]:
+    return list(EXTRACTORS.keys())

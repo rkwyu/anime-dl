@@ -4,37 +4,47 @@
 <img style="border-radius: 20px" src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174">
 </a>
 
-## About ##
-A tool to get anime from different websites with [CLI (Command Line Interface)](#usage-cli) and [WebUI](#usage-webui).  
-It currently supports following websites:  
-- [x] [anime1.in](https://anime1.in/)  
-- [x] [anime1.me](https://anime1.me/)  
-- [x] [yhdm.one](https://yhdm.one/)  
-- [x] [xgcartoon.com](https://www.xgcartoon.com/)
-- [x] [lincartoon.com](https://www.lincartoon.com/)
-- [x] [agdm.tv](https://www.agdm.tv/)
+---
 
-Pending to supports:  
-- [ ] [kickassanime.mx](https://www1.kickassanime.mx/)
-- [ ] [iyinghua.io](http://www.iyinghua.io/)
+A command-line and web UI tool for downloading anime and animation content where legally permitted.
+
+## ⚠️ Legal & Ethical Notice ##
+
+Use this tool only on content you are authorized to download, such as:
+- Anime you uploaded yourself
+- Publicly available or officially free releases
+- Creative Commons or licensed animation content
+
+The authors __do not verify licenses__ and are __not responsible for misuse__.
+
+Downloading copyrighted content without permission may violate copyright law.
+
+## About ##
+
+__anime-dl__ allows you to download anime and animation content from supported websites efficiently, using either CLI or a WebUI interface.
+
+> This tool does __not__ bypass protections or provide access to content without authorization.
 
 ## Prerequisites ##
-Please make sure the following tool(s) / application(s) are properly setup and ready to use:
-- FFmpeg ([https://www.ffmpeg.org/](https://www.ffmpeg.org/))
+
+- Python 3.10+
+- FFmpeg (https://www.ffmpeg.org)
+
+Check installation:
+```console
+python --version
+ffmpeg -version
+```
 
 ## Setup ##
-1. Download repository  
 ```console
 git clone https://github.com/rkwyu/anime-dl
-```
-2. Install dependencies
-```console
-cd ./anime-dl
+cd anime-dl
 python -m pip install -r requirements.txt
 ```
 
 ## Configuration ##
-Output directory can be configured in `config.ini`
+Set the output directory in `config.ini`
 ```ini
 [DIRECTORY]
 output=./output
@@ -42,30 +52,50 @@ output=./output
 
 ## Usage (CLI) ##
 ```console
-python run.py {URL}
+python run.py [options] <URL>
 ```
 
-#### Example 1: Download all episodes of 《Chainsaw Man Season 1》 ####
-```console
-python run.py https://www.xgcartoon.com/detail/dianjurenriyu-tengbenshu
-```
-#### Example 1: Download episode 01 of 《Chainsaw Man Season 1》 ####
-```console
-python run.py https://www.xgcartoon.com/video/dianjurenriyu-tengbenshu/vRsDVLPPou.html
-```
+__Note__: Ensure you have the legal right to download content from the given URL.
 
 ## Usage (WebUI) ##
 ```console
 python webUI.py
 ```
-After the logs are shown as below, go to [http://127.0.0.1:7860](http://127.0.0.1:7860)
-```console
-Running on local URL:  http://127.0.0.1:7860
+Visit the local URL shown in logs (usually http://127.0.0.1:7860) to use the WebUI.
 
-To create a public link, set `share=True` in `launch()`.
-```
 ![anime-al screenshot](docs/screenshot.png?raw=true "anime-al")
 
+> Only use the WebUI for content you have the right to download.
+
+## Supported Sites ##
+
+The tool can work with multiple anime and animation sites.
+
+> The README does not list specific sites to avoid promoting potentially infringing sources. Users are responsible for ensuring they are authorized to download content.
+
+To see the current list of supported sites, run:
+```console
+python run.py --list-sites
+```
+
+Output example:
+```console
+Supported extractors:
+- SiteA
+- SiteB
+- SiteC
+```
+
+> We do not guarantee legality of any site. Users must ensure they are authorized to download content.
+
+## Why This Matters ##
+
+Tools like this can be misused to download content without authorization. This README clarifies that __anime-dl__ is intended only for content users are legally permitted to download.
+
+## Disclaimer ##
+
+- Not affiliated with any anime site.
+- All trademarks and copyrights belong to their respective owners.
 
 ## License ##
 This project is licensed under the [MIT License](LICENSE.md)

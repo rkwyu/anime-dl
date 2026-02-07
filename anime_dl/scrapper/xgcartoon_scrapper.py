@@ -16,8 +16,8 @@ logger = Logger()
 
 class XgCartoonScrapper(Scrapper):
     def get_episodes(self, url: str) -> typing.List[Episode]:
-        if re.search(regex.URL["xgcartoon"]["series"], url):
-            m = re.search(regex.URL["xgcartoon"]["series"], url)
+        if re.search(regex.URL["xgcartoon.com"]["series"], url):
+            m = re.search(regex.URL["xgcartoon.com"]["series"], url)
             cartoon_id = m.groups()[0]
             episodes = self.parse_series(url)
             progress_bar = ProgressBar("Link Fetching", 1, len(episodes))
@@ -27,8 +27,8 @@ class XgCartoonScrapper(Scrapper):
                 )
                 progress_bar.print()
             return episodes
-        elif re.search(regex.URL["xgcartoon"]["episode"], url):
-            m = re.search(regex.URL["xgcartoon"]["episode"], url)
+        elif re.search(regex.URL["xgcartoon.com"]["episode"], url):
+            m = re.search(regex.URL["xgcartoon.com"]["episode"], url)
             cartoon_id = m.groups()[0]
             chapter_id = m.groups()[1]
             episode = self.parse_episode(url)

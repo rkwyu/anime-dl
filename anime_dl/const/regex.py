@@ -1,10 +1,10 @@
 URL = {
-    "xgcartoon": {
+    "xgcartoon.com": {
         "domain": "^https?:\/\/www\.xgcartoon\.com\/.+$",
         "series": "^https?:\/\/www\.xgcartoon\.com\/detail\/([_a-zA-Z0-9\-]+)$",
         "episode": "^https?:\/\/www\.xgcartoon\.com\/video\/([_a-zA-Z0-9\-]+)\/([_a-zA-Z0-9\-]+)\.html$",
     },
-    "lincartoon": {
+    "lincartoon.com": {
         "domain": "^https?:\/\/www\.lincartoon\.com\/.+$",
         "series": "^https?:\/\/www\.lincartoon\.com\/detail\/([_a-zA-Z0-9\-]+)$",
         "episode": "^https?:\/\/www\.lincartoon\.com\/video\/([_a-zA-Z0-9\-]+)\/([_a-zA-Z0-9\-]+)\.html$",
